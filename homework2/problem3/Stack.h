@@ -27,5 +27,5 @@ public:
 };
 
 void printRPN(const char* cal);
-
+bool checkRight(const char* cal);
 #endif //PROBLEM3_STACK_H
