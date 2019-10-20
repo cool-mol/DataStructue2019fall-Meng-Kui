@@ -16,6 +16,9 @@ void sLinkString::inputWord(char* word){
     Node* p = head;
     int i = 0;
     while(word[i] != '\0'){
+        if(word[i] >= 'A' && word[i] <= 'Z'){
+            word[i] = word[i] - 'A' + 'a';
+        }
         p->next = new Node(word[i]);
         p = p->next;
         i ++;
@@ -27,6 +30,7 @@ void sLinkString::inputWord(char* word){
 void sLinkString::pushBack(char letter){
     tail->next = new Node(letter);
     tail = tail->next;
+
 }
 
 void sLinkString::clear(){

@@ -11,4 +11,4 @@ int main() {
     printSameSuffix(word1,word2);
 
     return 0;
-} 
+}
