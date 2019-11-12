@@ -6,6 +6,7 @@
 #define PROBLEM2_PRIORITYQUEUE_H
 
 #include <iostream>
+
 using namespace std;
 
 class priorityQueue {
@@ -41,11 +42,8 @@ public:
 
     int *getArray() { return array; }
 
-    bool isEmpty(){
-        for(int i = 0;i < currentSize;i ++) cout << array[i + 1] << ' ';
-        cout << endl;
+    bool isEmpty() {
         return currentSize == 0;
-
     }
 };
 
