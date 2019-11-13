@@ -14,6 +14,7 @@ private:
     int currentSize;
     int *array;
     int maxSize;
+    int type;
 
     void doubleSpace();
 
@@ -28,7 +29,7 @@ public:
         currentSize = 0;
     }
 
-    priorityQueue(const int data[], int size);
+    priorityQueue(const int data[], int size, int T); //1为最小堆 2为最大堆
 
     ~priorityQueue() { delete[] array; }
 
@@ -45,6 +46,8 @@ public:
     bool isEmpty() {
         return currentSize == 0;
     }
+
+    int getLength() { return currentSize; }
 };
 
 #endif //PROBLEM2_PRIORITYQUEUE_H

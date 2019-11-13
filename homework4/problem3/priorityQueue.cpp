@@ -17,12 +17,14 @@ void priorityQueue::doubleSpace() {
     array = tmp;
 }
 
-priorityQueue::priorityQueue(const int *data, int size) {
+priorityQueue::priorityQueue(const int *data, int size, int T) {
     currentSize = size;
     maxSize = 100;
+    type = T;
     array = new int[maxSize];
     for (int i = 0; i < size; i++) array[i + 1] = data[i];
     buildHeap();
+
 }
 
 void priorityQueue::buildHeap() {
@@ -33,11 +35,18 @@ void priorityQueue::buildHeap() {
 void priorityQueue::percolateDown(int hole) {
     int child;
     int tmp = array[hole];
-    for (; hole * 2 <= currentSize; hole = child) {
-        child = hole * 2;
-        if (child != currentSize && array[child + 1] > array[child])child++;
-        if (array[child] > tmp) array[hole] = array[child]; else break;
-    }
+    if (type == 1)
+        for (; hole * 2 <= currentSize; hole = child) {
+            child = hole * 2;
+            if (child != currentSize && array[child + 1] < array[child])child++;
+            if (array[child] < tmp) array[hole] = array[child]; else break;
+        }
+    if (type == 2)
+        for (; hole * 2 <= currentSize; hole = child) {
+            child = hole * 2;
+            if (child != currentSize && array[child + 1] > array[child])child++;
+            if (array[child] > tmp) array[hole] = array[child]; else break;
+        }
     array[hole] = tmp;
 }
 

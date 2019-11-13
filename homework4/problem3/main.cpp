@@ -5,26 +5,31 @@ using namespace std;
 
 int minBoxSize(int N, int *items, int capacity) {
     // 请构造并使用优先级队列类实现该函数
-    priorityQueue Q(items, N);
-    int sum = 0;
+    priorityQueue Q(items, N, 2);
+    int *B = new int[100];
+    priorityQueue bag(B, 0, 1);
     int tmp;
-    int *bag = new int[N];
-    for(int i = 0;i < N;i ++){
-        bag[i] = 0;
-    }
     while(!Q.isEmpty()){
         tmp = Q.deQueue();
-        for(int i = 0;i < N;i ++){
-            if(bag[i] + tmp <= capacity){
-                bag[i] += tmp;
-                break;
-            }
+        if(bag.isEmpty()){
+            bag.enQueue(tmp);
+            continue;
         }
+
+        if(tmp + bag.getHead() <= capacity){
+            tmp += bag.getHead();
+            bag.deQueue();
+            bag.enQueue(tmp);
+            continue;
+        }
+
+        if(tmp + bag.getHead() > capacity){
+            bag.enQueue(tmp);
+        }
+
     }
-    for(int i = 0;bag[i] != 0;i ++){
-        sum ++;
-    }
-    return sum;
+
+    return bag.getLength();
 }
 
 int main() {
