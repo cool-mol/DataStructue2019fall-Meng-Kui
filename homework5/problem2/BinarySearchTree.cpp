@@ -83,7 +83,7 @@ void BinarySearchTree::midOrder(BinaryNode *t) {
 void BinarySearchTree::find_i(int x) {
     int *array;
     count = 0;
-    array = new int [currentSize]{0};
+    array = new int [currentSize];
     find_i(array, root);
     cout << array[currentSize - x] << endl;
     delete []array;
@@ -124,12 +124,12 @@ void BinarySearchTree::deleteLarger(int x, BinaryNode *t) {
 
     deleteLarger(x, t->left);
     deleteLarger(x, t->right);
-    if (x <= t->key) remove(t->key);
+    if (x < t->key) remove(t->key);
 }
 
 void BinarySearchTree::deleteSmaller(int x, BinaryNode *t) {
     if (t == nullptr) return;
     deleteSmaller(x, t->right);
     deleteSmaller(x, t->left);
-    if (x >= t->key) remove(t->key);
+    if (x > t->key) remove(t->key);
 }
