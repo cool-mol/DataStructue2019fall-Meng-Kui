@@ -122,13 +122,14 @@ void BinarySearchTree::deleteInRange(int x, int y, BinaryNode *t) {
 void BinarySearchTree::deleteLarger(int x, BinaryNode *t) {
     if (t == nullptr) return;
 
+    deleteLarger(x, t->left);
     deleteLarger(x, t->right);
     if (x <= t->key) remove(t->key);
 }
 
 void BinarySearchTree::deleteSmaller(int x, BinaryNode *t) {
     if (t == nullptr) return;
-
+    deleteSmaller(x, t->right);
     deleteSmaller(x, t->left);
     if (x >= t->key) remove(t->key);
 }
